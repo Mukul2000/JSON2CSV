@@ -6,16 +6,7 @@ import Home from "./Components/Home/Home";
 
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-  console.log(user);
-  if (user === null)
-    return <Login setUser={setUser} />
-  else {
-    return (
-      // <div>Hi you're logged in</div>
-      <Home />
-    );
-  }
+  return <Home/>
 }
 
 export default App;

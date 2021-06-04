@@ -1,15 +1,18 @@
 import React from 'react';
 import "./Login.css";
 import GoogleLogin from 'react-google-login';
+import {useHistory} from 'react-router-dom';
 
-export default function Login({ setUser }) {
+export default function Login() {
+    const history = useHistory();
+
     function googleSuccess(res) {
         const user = {
             profile: res.profileObj,
             token: res.tokenId
         };
         localStorage.setItem('user', JSON.stringify(user));
-        setUser(user);
+        history.push('/')
     }
 
     function googleFailure(err) {
