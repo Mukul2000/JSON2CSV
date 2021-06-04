@@ -13,6 +13,7 @@ export default function Login({ setUser }) {
     }
 
     function googleFailure(err) {
+        alert('There was a problem logging in')
         console.log(err);
     }
 
