@@ -2,14 +2,14 @@ import React from 'react';
 import "./Login.css";
 import GoogleLogin from 'react-google-login';
 
-export default function Login({ setLogin }) {
+export default function Login({ setUser }) {
     function googleSuccess(res) {
-        const data = {
+        const user = {
             profile: res.profileObj,
             token: res.tokenId
         };
-        localStorage.setItem('user', JSON.stringify(data));
-        setLogin(true);
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
     }
 
     function googleFailure(err) {

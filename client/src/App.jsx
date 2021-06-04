@@ -5,10 +5,10 @@ import Login from "./Components/Login/Login.jsx";
 
 
 function App() {
-  const [isLoggedIn, setLogin] = useState(false);
-  console.log(isLoggedIn);
-  if (!isLoggedIn)
-    return <Login setLogin={setLogin} />
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  console.log(user);
+  if (user === null)
+    return <Login setUser={setUser} />
   else {
     return (
       <div>Hi you're logged in</div>
