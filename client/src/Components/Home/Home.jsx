@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./Home.css";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -14,7 +15,7 @@ export default function Home() {
                     <br></br>
                     <p>
                         {user ? <Button variant="primary">Upload</Button> :
-                         <Button variant="primary"> Sign In</Button>}
+                            <Link to='/login'><Button variant="primary"> Sign In</Button> </Link>}
                     </p>
                 </Jumbotron>
 
