@@ -14,7 +14,7 @@ export default function Home() {
                     <br></br>
                     <p>
                         {user ? <Button variant="primary">Upload</Button> :
-                         <Button variant="primary"> Sign in</Button>}
+                         <Button variant="primary"> Sign In</Button>}
                     </p>
                 </Jumbotron>
 
