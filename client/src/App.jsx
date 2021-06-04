@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
-import Login from "./Components/Login/Login.jsx";
+import Login from "./Components/Login/Login";
+import Home from "./Components/Home/Home";
 
 
 
@@ -11,8 +12,8 @@ function App() {
     return <Login setUser={setUser} />
   else {
     return (
-      <div>Hi you're logged in</div>
-      // <Home />
+      // <div>Hi you're logged in</div>
+      <Home />
     );
   }
 }
