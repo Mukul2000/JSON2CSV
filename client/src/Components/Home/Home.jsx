@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./Home.css";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
+import Upload from '../Upload/Upload';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -14,12 +15,13 @@ export default function Home() {
                     <h1>Convert JSON to CSV</h1>
                     <br></br>
                     <p>
-                        {user ? <Button variant="primary">Upload</Button> :
-                            <Link to='/login'><Button variant="primary"> Sign In</Button> </Link>}
+                        {user ? <Upload /> :
+                            <Link to='/login'><Button variant='primary'> Sign In</Button></Link>}
                     </p>
                 </Jumbotron>
 
             </div>
+
             <div id='bottom-container'>
                 <h1> See what other users uploaded </h1>
             </div>
