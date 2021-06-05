@@ -1,0 +1,11 @@
+#top-container {
+    height: 300px;
+    text-align: center;
+    padding-top: 50px;
+    background-color: crimson;
+}
+
+#bottom-container {
+    padding-top: 10px;
+    padding-left: 10px;
+}

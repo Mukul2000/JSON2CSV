@@ -1,20 +1,23 @@
 import './App.css';
-import React, { useState } from 'react';
-import Login from "./Components/Login/Login.jsx";
-
+import React from 'react';
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-  console.log(user);
-  if (user === null)
-    return <Login setUser={setUser} />
-  else {
-    return (
-      <div>Hi you're logged in</div>
-      // <Home />
-    );
-  }
+  return (
+    <Router>
+      <Switch>
+        <Route path='/login'> <Login /> </Route>
+        <Route path='/'> <Home /> </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
