@@ -14,6 +14,7 @@ async function authByToken(req, res, next) {
     try {
         const decodedData = decode(token);
         req.userId = decodedData?.sub; // Google's unique ID for every user
+        if(!req.userId) throw 'Unauthenticated'
         next();
     }
     catch (e) {
