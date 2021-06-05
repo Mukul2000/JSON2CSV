@@ -15,7 +15,7 @@ async function add_convert(file_data, user_data) {
     try {
 
         // Save to DB 
-        // Read from source, convert to JSON and write to destination
+        // Read from source, convert to CSV and write to destination
 
         if(!validateJSON(filename)) throw 'Invalid JSON';
 
@@ -26,7 +26,7 @@ async function add_convert(file_data, user_data) {
             original_filename: original_filename,
             filename: filename,
         }, { upsert: true }),
-        convert_to_CSV(filename)]); 
+        convert_to_CSV(filename)]);
     }
     catch (e) {
         throw e;

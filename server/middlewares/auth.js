@@ -14,7 +14,6 @@ async function authByToken(req, res, next) {
     try {
 
         const decodedData = decode(token);
-        console.log(decodedData);
         req.userId = decodedData?.sub; // Google's unique ID for every user
         req.userName = decodedData?.name;
         req.userPicture = decodedData?.picture;
