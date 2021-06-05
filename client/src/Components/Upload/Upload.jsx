@@ -12,17 +12,31 @@ export default function Upload() {
         setFile(file);
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         const formData = new FormData();
 
         formData.append('uploaded_json', file);
         try {
-            axios.post('http://localhost:8000/files', formData, {
+            const response = await axios.post('http://localhost:8000/files', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: JSON.parse(localStorage.getItem('user')).token
                 }
             });
+            const url = 'http://localhost:8000/files/' + response.data
+            // Dirty workaround to download file.
+            axios({
+                url: url,
+                method: 'GET',
+                responseType: 'blob', // important
+              }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', "converted.csv");
+                document.body.appendChild(link);
+                link.click();
+              });
         }
         catch (err) {
             console.log(err);

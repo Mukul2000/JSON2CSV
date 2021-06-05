@@ -12,8 +12,15 @@ async function authByToken(req, res, next) {
     }
 
     try {
+
         const decodedData = decode(token);
         req.userId = decodedData?.sub; // Google's unique ID for every user
+        req.userName = decodedData?.name;
+        req.userPicture = decodedData?.picture;
+
+        if (!req.userId) throw 'Unauthenticated';
+        if (!req.userName) throw 'Something went wrong';
+
         next();
     }
     catch (e) {
