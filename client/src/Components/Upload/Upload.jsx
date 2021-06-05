@@ -5,6 +5,8 @@ import axios from 'axios';
 export default function Upload() {
     const [file, setFile] = useState();
 
+    // TODO: Maybe put the POST request code seperately, we'll see.
+
     function handleChange(e) {
         const file = e.target.files[0];
         setFile(file);
@@ -13,9 +15,7 @@ export default function Upload() {
     function handleSubmit(e) {
         const formData = new FormData();
 
-        console.log(file);
         formData.append('uploaded_json', file);
-        console.log(formData);
         try {
             axios.post('http://localhost:8000/files', formData, {
                 headers: {

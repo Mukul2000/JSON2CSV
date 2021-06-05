@@ -10,7 +10,6 @@ export default function Login() {
         if(localStorage.getItem('user')) {
             alert('Already logged in');
             history.push('/');
-            console.log("fucked");
         }
     }, []);
 

@@ -1,7 +1,7 @@
 const { decode } = require('jsonwebtoken');
 
 async function authByToken(req, res, next) {
-    const token = req.header('Authorization')?.split(' ');
+    const token = req.header('Authorization')?.split(' ')[0];
 
     if (!token) {
         return res.status(401).json({
@@ -10,11 +10,10 @@ async function authByToken(req, res, next) {
             }
         });
     }
-    console.log(token);
+
     try {
         const decodedData = decode(token);
-        console.log(decodedData);
-        req.userId = decodedData?.sub;
+        req.userId = decodedData?.sub; // Google's unique ID for every user
         next();
     }
     catch (e) {
