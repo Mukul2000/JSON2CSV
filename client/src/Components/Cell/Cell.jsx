@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './Cell.css';
 
-export default function Cell({name, email, files}) {
+//Mini display cell to just show things
+export default function Cell({ name, email, files }) {
     return (
-        <div>
-            <div id = 'header'> {name} {email} </div>
-            {files.map((file) => {
-                return <div> {file.original_filename} </div>
+        <div id = 'container'>
+            <Link to={`/user/${email}`}><div id='header'> {name} {email} </div> </Link>
+            {files.map((file,idx) => {
+                return <div key = {idx}> {file.original_filename} </div>
             })}
         </div>
     );

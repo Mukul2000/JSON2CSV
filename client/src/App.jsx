@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import UserDetail from './Components/UserDetail/UserDetail';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <Switch>
         <Route path='/login'> <Login /> </Route>
+        <Route path='/user/:email'> <UserDetail/> </Route>
         <Route path='/'> <Home /> </Route>
       </Switch>
     </Router>

@@ -11,7 +11,6 @@ async function get_userfiles(user_id, page_num) {
 // Check whether the logged in user exists in the database, if not add this user.
 async function check_login(profile) {
     const user = await User.findOne({ id: profile.googleId, email: profile.email });
-    console.log(user);
     if (user === null) {
         // New user, not in database. Add user
         try {
@@ -44,7 +43,7 @@ async function random_records() {
 
 async function search(email) {
     try {
-        const data = await User.find({ email: email });
+        const data = await User.findOne({ email: email });
         return data;
     }
     catch (e) {

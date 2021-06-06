@@ -23,7 +23,9 @@ route.get('/random', async (req,res) => {
 route.get('/search/:email', async (req,res) => {
     // search for a user with email
     try {
-        const user = UserControllers.search(req.params.email);
+        console.log("mmm");
+        const user = await UserControllers.search(req.params.email);
+        console.log(user);
         res.send(user);
     }
     catch(e) {

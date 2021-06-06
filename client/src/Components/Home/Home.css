@@ -1,11 +1,21 @@
+body {
+    background-color: #f3f0d7;
+}
+
 #top-container {
     height: 300px;
     text-align: center;
+    color: white;
     padding-top: 50px;
-    background-color: crimson;
+    background-color: #232323;
 }
 
 #bottom-container {
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 20px 20px 20px 10px;
+}
+
+#heading {
+    margin-top: 20px;
+    margin-left:20px;
+    margin-bottom: 20px;
 }
