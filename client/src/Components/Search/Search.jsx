@@ -6,18 +6,19 @@ import './Search.css';
 
 export default function Search() {
     const [value, setValue] = useState('');
-    const [records, setRecords] = useState([]);
+    const [users, setUsers] = useState([{files:[]}]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/user/random')
-            .then((res) => setRecords(res.data))
+            .then((res) => setUsers(res.data))
             .catch((err) => console.log(err));
     }, []);
 
     function searchEmail() {
         axios.get('http://localhost:8000/user/search/' + value)
-            .then(res => setRecords(res.data))
+            .then(res => setUsers(res.data))
             .catch(e => console.log(e));
+        console.log(users);
     }
 
     return (
@@ -26,12 +27,12 @@ export default function Search() {
             <div id='search-bar'> <input placeholder='Search user by e-mail' value={value} onChange={(e) => setValue(e.target.value)} /> </div>
             <div id = 'submit-btn'><Button variant='primary' onClick={searchEmail}> Search </Button> </div>
             </div>
-            {records.map((record, index) => {
+            {users.map((user, idx) => {
                 return <Cell
-                    key={index}
-                    name={record.name}
-                    email={record.email}
-                    files={record.files}
+                    key = {idx}
+                    name={user.name}
+                    email={user.email}
+                    files={user.files}
                 />
             })}
         </div>

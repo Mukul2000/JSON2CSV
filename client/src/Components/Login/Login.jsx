@@ -30,7 +30,7 @@ export default function Login() {
     }
 
     return (
-        <div id="login-container">
+        <div id="login-container" className='text-center'>
             <h1> Login Page </h1>
             <GoogleLogin
                 clientId="709601355432-7216gbncr7mdr0oku6n9bc9i7jt45736.apps.googleusercontent.com"
