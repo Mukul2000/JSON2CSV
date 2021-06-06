@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import "./Login.css";
 import GoogleLogin from 'react-google-login';
 import {useHistory} from 'react-router-dom';
+import axios from 'axios';
 
 export default function Login() {
     const history = useHistory();
@@ -13,11 +14,12 @@ export default function Login() {
         }
     }, []);
 
-    function googleSuccess(res) {
+    async function googleSuccess(res) {
         const user = {
             profile: res.profileObj,
             token: res.tokenId
         };
+        await axios.post('http://localhost:8000/user/login', res.profileObj);
         localStorage.setItem('user', JSON.stringify(user));
         history.push('/')
     }
