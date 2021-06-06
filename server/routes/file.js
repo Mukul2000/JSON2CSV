@@ -2,7 +2,7 @@ const express = require('express');
 const route = express.Router();
 const multer = require('multer');
 const authByToken = require('../middlewares/auth');
-const filesControllers = require('../controllers/files');
+const FilesControllers = require('../controllers/files');
 const upload = multer({ dest: './uploads/' });
 const path = require('path');
 
@@ -18,7 +18,7 @@ route.post('/', authByToken, upload.single('uploaded_json'), async (req, res) =>
         }
 
         // req.file.filename holds the name of the file saved in the server
-        await filesControllers.add_convert(req.file, user_data);
+        await FilesControllers.add_convert(req.file, user_data);
     }
     catch (e) {
         res.status(400).json({ error: e });
@@ -30,9 +30,9 @@ route.post('/', authByToken, upload.single('uploaded_json'), async (req, res) =>
     // Workaround, make the frontend request for this file ?
 });
 
+// Get a particular file
 route.get('/:name', (req,res) => {
     const filename = req.params.name + '.csv';
-    // res.set('Content-Disposition', 'attachment; filename=' + filename)
     res.download(path.join(__dirname, '../downloads', filename))
 });
 
