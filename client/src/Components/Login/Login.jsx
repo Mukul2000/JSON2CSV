@@ -14,7 +14,7 @@ export default function Login() {
         }
     }, []);
 
-    async function googleSuccess(res) {
+    function googleSuccess(res) {
         const user = {
             profile: res.profileObj,
             token: res.tokenId

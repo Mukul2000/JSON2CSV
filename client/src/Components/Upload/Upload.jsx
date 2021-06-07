@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import {upload} from '../../api/api';
+import { upload } from '../../api/api';
 
 export default function Upload() {
     const [file, setFile] = useState();
@@ -8,13 +8,13 @@ export default function Upload() {
     // TODO: Maybe put the POST request code seperately, we'll see.
 
     function handleChange(e) {
-        if(e.target.files[0].size > 2097152) {
+        if (e.target.files[0].size > 2097152) {
             alert("File size must be less than 2MB");
-            e.target.value='';
+            e.target.value = '';
         }
-        else if(!e.target.files[0].name.endsWith('.json')) {
+        else if (!e.target.files[0].name.endsWith('.json')) {
             alert("Only JSON file types allowed");
-            e.target.value='';
+            e.target.value = '';
         }
         else {
             const file = e.target.files[0];
@@ -22,16 +22,10 @@ export default function Upload() {
         }
     }
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         const formData = new FormData();
-
         formData.append('uploaded_json', file);
-        try {
-            upload(formData);
-        }
-        catch (err) {
-            console.log(err);
-        }
+        upload(formData);
     }
 
     return (

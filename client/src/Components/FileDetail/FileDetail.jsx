@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import './FileDetail.css'
 import {download} from '../../api/api';
 
+// Shows details of a file and options to download it as CSV or JSON.
 export default function FileDetail() {
     const [fileData, setData] = useState([]);
     const {name, id, filename} = useParams();
@@ -26,14 +27,17 @@ export default function FileDetail() {
     
     return (
         <div className='m-5'>
-            {name} {id}
+            Owner - 
+            <Link to = {`/user/${name}/${id}`}>
+            <h4>{name} </h4> 
+            <h6>#{id}</h6>
+            </Link>
             <br></br>
+            File content - 
             <div id='text-area'>
-                {/* So the JSON file could just be one json or multiple json as a list. Each of the below lines work for one of them. Have to find a way to do for both. */}
-                <div id = 'text' className='m-2'> {JSON.stringify(fileData)} </div>
-            
+                <div id = 'text' className='m-2'> {JSON.stringify(fileData)} </div>            
             </div>
-            <div id='download button'>
+            <div id='download-buttons'>
                 Download as : 
                 <Button className='m-4' id ='json' variant='primary' onClick={json}> JSON </Button>
                 <Button id ='csv' variant='primary' onClick={csv}> CSV </Button>

@@ -15,7 +15,7 @@ export function upload(formData) {
 
 // Dirty workaround to download file.
 export function download(URL, filename) {
-    const res = API.get(URL, { responseType: 'blob' })
+    API.get(URL, { responseType: 'blob' })
         .then((res) => {
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement('a');
@@ -25,6 +25,5 @@ export function download(URL, filename) {
             link.click();
         })
         .catch(e => console.log(e));
-
 }
 

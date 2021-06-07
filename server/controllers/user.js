@@ -25,7 +25,6 @@ async function check_login(req, res) {
     if (user === null) {
         // New user, not in database. Add user
         try {
-            console.log("this runs");
             const newuser = new User({
                 id: profile.googleId,
                 email: profile.email,
