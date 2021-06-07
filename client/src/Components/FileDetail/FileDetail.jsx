@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import {useParams} from 'react-router-dom';
 import './FileDetail.css'
+import {download} from '../../api/api';
 
 export default function FileDetail() {
     const [fileData, setData] = useState([]);
@@ -16,37 +17,11 @@ export default function FileDetail() {
     }, []);
 
     function json() {
-        const url = 'http://localhost:8000/files/' + filename;
-            // Dirty workaround to download file.
-            axios({
-                url: url,
-                method: 'GET',
-                responseType: 'blob', // important
-              }).then((response) => {
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', "file.json");
-                document.body.appendChild(link);
-                link.click();
-              });
+        download('/files/'+filename, 'file.json');
     }
 
     function csv() {
-        const url = 'http://localhost:8000/files/' + filename + '.csv';
-            // Dirty workaround to download file.
-            axios({
-                url: url,
-                method: 'GET',
-                responseType: 'blob', // important
-              }).then((response) => {
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', "converted.csv");
-                document.body.appendChild(link);
-                link.click();
-              });
+        download('/files/'+filename+'.csv', 'converted.csv');
     }
     
     return (
