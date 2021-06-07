@@ -8,7 +8,7 @@ export default function Cell({ name, email, files }) {
         <div id = 'container'>
             <Link to={`/user/${email}`}><div id='header'> {name} {email} </div> </Link>
             {files.map((file,idx) => {
-                return <div key = {idx}> {file.original_filename} </div>
+                return <div id='afile' key = {idx}> {file.original_filename} </div>
             })}
         </div>
     );

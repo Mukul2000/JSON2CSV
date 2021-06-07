@@ -41,9 +41,9 @@ async function random_records() {
 }
 
 
-async function search(email) {
+async function search(id) {
     try {
-        const data = await User.find({ email: email });
+        const data = await User.find({ id: id });
         return data;
     }
     catch (e) {

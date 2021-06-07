@@ -2,11 +2,10 @@ const express = require('express');
 const UserControllers = require('../controllers/user');
 const route = express.Router();
 
-route.get('/search/:email', async (req,res) => {
+route.get('/search/:id', async (req,res) => {
     // search for a user with email
     try {
-        const user = await UserControllers.search(req.params.email);
-        console.log(user);
+        const user = await UserControllers.search(req.params.id);
         res.send(user);
     }
     catch(e) {

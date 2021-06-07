@@ -1,3 +1,8 @@
 #container {
     margin-left: 20px;
+    background-color: #d6d0b8;
+}
+
+#header, #afile {
+    padding-left: 10px;
 }
