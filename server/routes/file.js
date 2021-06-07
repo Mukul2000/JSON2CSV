@@ -36,7 +36,7 @@ route.post('/', authByToken, upload.single('uploaded_json'), async (req, res) =>
 // Get a particular file
 route.get('/:name', (req, res) => {
     const filename = req.params.name;
-    res.download(path.join(__dirname, '../downloads', filename))
+    res.download(path.join(__dirname, '../uploads', filename))
 });
 
 module.exports = route;

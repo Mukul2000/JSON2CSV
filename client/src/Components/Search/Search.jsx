@@ -28,10 +28,11 @@ export default function Search() {
             <div id = 'submit-btn'><Button variant='primary' onClick={searchEmail}> Search </Button> </div>
             </div>
             {users.map((user, idx) => {
+                {console.log(user.files)}
                 return <Cell
                     key = {idx}
+                    id={user.id}
                     name={user.name}
-                    email={user.email}
                     files={user.files}
                 />
             })}

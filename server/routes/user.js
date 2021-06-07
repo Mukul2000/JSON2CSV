@@ -3,7 +3,7 @@ const UserControllers = require('../controllers/user');
 const route = express.Router();
 
 route.get('/search/:id', async (req,res) => {
-    // search for a user with email
+    // search for a user with id
     try {
         const user = await UserControllers.search(req.params.id);
         res.send(user);
@@ -16,6 +16,7 @@ route.get('/search/:id', async (req,res) => {
 // GET all files belonging to this user_id, used when you open up someone's profile.
 route.get('/:user_id/:page', async (req, res) => {
     const files = await UserControllers.get_userfiles(req.params.user_id, req.params.page);
+    console.log(files);
     res.send(files);
 });
 

@@ -1,29 +1,35 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom';
+import Button from 'react-bootstrap/esm/Button';
+import { useParams, Link } from 'react-router-dom';
 
 export default function UserDetail() {
-    const [user, setUser] = useState({});
-    const { email } = useParams();
-    console.log(email);
+    const [files, setFiles] = useState([]);
+    const [page, setPage] = useState(1);
+    const { name, id } = useParams();
+    const left = '<';
+    const right = '>';
 
     useEffect(() => {
-        console.log("runs?");
-        axios.get('http://localhost:8000/user/search/' + email)
-        .then(res => {
-            setUser(res.data);
-        })
-        .catch(e => console.log(e));
-    }, []);
+        axios.get('http://localhost:8000/user/' + id + '/' + page)  // returns a list of object
+            .then(res => {
+                setFiles(res.data);
+            })
+            .catch(e => console.log(e));
+    }, [page]);
 
-    console.log(user);
-    
+
     return (
         <div>
-            <h1 id = 'hhege'> {user.name} {user.email} </h1>
-            {user.files.map((file) => {
-                return <div> {file.original_filename} </div> 
-            })} 
+            <h1 id='hhege'> {name} {id} </h1>
+            {files.map((file) => {
+                return <Link to={`/user/${name}/${id}/${file.internal_filename}`}><div> {file.original_filename} </div> </Link>
+            })}
+            <div id='pages'>
+                {page > 1 ? <Button variant='light' onClick={(e) => setPage(page - 1)}> {left} </Button> : null}
+                {page}
+                {files.length > 0 ? <Button variant='light' onClick={(e) => setPage(page + 1)}> {right} </Button> : null}
+            </div>
         </div>
     );
 }

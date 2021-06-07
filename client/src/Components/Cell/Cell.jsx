@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import './Cell.css';
 
 //Mini display cell to just show things
-export default function Cell({ name, email, files }) {
+export default function Cell({ id, name, email, files }) {
     return (
         <div id = 'container'>
-            <Link to={`/user/${email}`}><div id='header'> {name} {email} </div> </Link>
+            <Link to={`/user/${name}/${id}`}><div id='header'> {name} #{id} </div> </Link>
             {files.map((file,idx) => {
-                return <div id='afile' key = {idx}> {file.original_filename} </div>
+                {console.log(file)}
+                return <Link to={`/user/${name}/${id}/${file.internal_filename}`}> <div id='afile' key = {idx}> {file.original_filename} </div> </Link> 
             })}
         </div>
     );

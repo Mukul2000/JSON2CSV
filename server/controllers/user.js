@@ -2,9 +2,9 @@ const User = require('../schemas/Schema');
 
 // find all files which have owner as user_id
 async function get_userfiles(user_id, page_num) {
-    const resPerPage = 15;
+    const resPerPage = 2;
     const page = Math.max(page_num, 1);
-    const data = await User.find({ id: user_id }).skip((resPerPage * page) - resPerPage).limit(resPerPage).files;
+    const data = (await User.find({ id: user_id }))[0].files;
     return data;
 }
 

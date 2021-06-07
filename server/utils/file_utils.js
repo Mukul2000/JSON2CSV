@@ -4,7 +4,7 @@ const { readFile, writeFile } = require('../promisify');
 async function convert_to_CSV(file_name) {
 
     const src_file_path = "./uploads/" + file_name;
-    const dest_file_path = "./downloads/" + file_name + ".csv";
+    const dest_file_path = "./uploads/" + file_name + ".csv";
 
     try {
 
