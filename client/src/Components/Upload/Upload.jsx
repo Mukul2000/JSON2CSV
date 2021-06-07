@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import {upload} from '../../api/api';
 
 export default function Upload() {
     const [file, setFile] = useState();
@@ -27,26 +27,7 @@ export default function Upload() {
 
         formData.append('uploaded_json', file);
         try {
-            const response = await axios.post('http://localhost:8000/files', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: JSON.parse(localStorage.getItem('user')).token
-                }
-            });
-            const url = 'http://localhost:8000/files/' + response.data
-            // Dirty workaround to download file.
-            axios({
-                url: url,
-                method: 'GET',
-                responseType: 'blob', // important
-              }).then((response) => {
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', "converted.csv");
-                document.body.appendChild(link);
-                link.click();
-              });
+            upload(formData);
         }
         catch (err) {
             console.log(err);
@@ -57,7 +38,7 @@ export default function Upload() {
         <div id='form-container'>
             {/* TODO: Limit upload file size  */}
             <input type='file' id='upload' name='uploaded_json' onChange={(e) => handleChange(e)} />
-            <Button variant='secondary' onClick={(e) => handleSubmit(e)}> Convert to CSV </Button>
+            <Button variant='primary' onClick={(e) => handleSubmit(e)}> Convert to CSV </Button>
         </div>
     );
 }

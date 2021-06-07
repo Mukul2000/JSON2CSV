@@ -26,6 +26,8 @@ export default function Search() {
             <div id='search-bar'> <input placeholder='Search user by id' value={value} onChange={(e) => setValue(e.target.value)} /> </div>
             <div id = 'submit-btn'><Button variant='primary' onClick={searchEmail}> Search </Button> </div>
             </div>
+            <h4> Recents - </h4>
+            <div className='card-group'>
             {users.map((user, idx) => {
                 return <Cell
                     key = {idx}
@@ -34,6 +36,7 @@ export default function Search() {
                     files={user.files}
                 />
             })}
+            </div>
         </div>
     );
 }

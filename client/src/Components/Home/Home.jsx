@@ -27,7 +27,7 @@ export default function Home() {
                 {/* I'll add a search bar to search for files of any user. Clicking on user goes to user detail page, clicking on file goes to FileDetail page
                 This job is suited to a component */}
                 <h1 id='heading'> See what other users uploaded </h1>
-                <Search/>
+                <Search />
             </div>
         </div>
     );
