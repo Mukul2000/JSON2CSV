@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "./Home.css";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
@@ -7,11 +7,8 @@ import { Link } from 'react-router-dom';
 import Search from '../Search/Search';
 
 export default function Home() {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
-    useEffect(() => {
-        if (localStorage.getItem('user')) setUser(JSON.parse(localStorage.getItem('user')));
-    }, [user]);
 
     function logout() {
         localStorage.removeItem('user');

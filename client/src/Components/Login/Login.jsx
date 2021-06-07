@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login() {
+    // Uses OAuth only for the time being, leaving the page here for future purposes.
     const history = useHistory();
 
     useEffect(() => {
