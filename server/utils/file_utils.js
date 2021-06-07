@@ -1,5 +1,5 @@
 const converter = require('json-2-csv');
-const { readFile, writeFile } = require('../promisify');
+const { readFile, writeFile } = require('./promisify');
 
 async function convert_to_CSV(file_name) {
 
