@@ -18,7 +18,6 @@ export default function Search() {
         axios.get('http://localhost:8000/user/search/' + value)
             .then(res => setUsers(res.data))
             .catch(e => console.log(e));
-        console.log(users);
     }
 
     return (
@@ -28,7 +27,6 @@ export default function Search() {
             <div id = 'submit-btn'><Button variant='primary' onClick={searchEmail}> Search </Button> </div>
             </div>
             {users.map((user, idx) => {
-                {console.log(user.files)}
                 return <Cell
                     key = {idx}
                     id={user.id}
