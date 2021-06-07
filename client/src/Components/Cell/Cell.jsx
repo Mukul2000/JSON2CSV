@@ -6,7 +6,7 @@ import './Cell.css';
 export default function Cell({ id, name, email, files }) {
     return (
         <div id = 'container'>
-            <Link to={`/user/${name}/${id}`}><div id='header'> {name} #{id} </div> </Link>
+            <Link to={`/user/${name}/${id}`}><div id='header'>User - {name} #{id} </div> </Link>
             {files.map((file,idx) => {
                 return <Link to={`/user/${name}/${id}/${file.internal_filename}`}> <div id='afile' key = {idx}> {file.original_filename} </div> </Link> 
             })}

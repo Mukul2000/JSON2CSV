@@ -19,9 +19,13 @@ export default function Login() {
             profile: res.profileObj,
             token: res.tokenId
         };
-        await axios.post('http://localhost:8000/user/login', res.profileObj);
-        localStorage.setItem('user', JSON.stringify(user));
-        history.push('/')
+        axios.post('http://localhost:8000/user/login', res.profileObj)
+        .then((res) => {
+            localStorage.setItem('user', JSON.stringify(user));
+            history.push('/');
+        })
+        .catch(e => console.log(e));
+        
     }
 
     function googleFailure(err) {
