@@ -12,7 +12,7 @@ export default function Cell({ id, name, files }) {
 
             {files.map((file,idx) => {
                 return <Link to={`/user/${name}/${id}/${file.internal_filename}`}> 
-                            <div id='afile' className='card-body link-secondary' key = {idx}> {file.original_filename} </div>
+                            <div id='afile' key = {idx} className='card-body link-secondary' > {file.original_filename} </div>
                         </Link> 
             })}
         </div>

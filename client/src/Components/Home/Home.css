@@ -6,8 +6,13 @@ body {
     height: 300px;
     text-align: center;
     color: white;
-    padding-top: 50px;
+    padding-top: 20px;
     background-color: #232323;
+}
+
+#user-bar {
+    text-align: end;
+    margin-right:20px;
 }
 
 #bottom-container {

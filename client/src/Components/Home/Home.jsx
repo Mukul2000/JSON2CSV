@@ -7,12 +7,26 @@ import { Link } from 'react-router-dom';
 import Search from '../Search/Search';
 
 export default function Home() {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) setUser(JSON.parse(localStorage.getItem('user')));
+    }, [user]);
+
+    function logout() {
+        localStorage.removeItem('user');
+        setUser(null);
+    }
 
     return (
         <div>
             <div id='top-container'>
                 <Jumbotron fluid>
+                    {user ? <div id='user-bar'>
+                       <Link to={`/user/${user.profile.name}/${user.profile.googleId}`}> <Button className='btn btn-dark'> My Profile </Button> </Link>
+                        <Button className='btn btn-dark' onClick={logout}> Log Out </Button>
+                    </div> : null}
+
                     <h1>Convert JSON to CSV</h1>
                     <br></br>
                     <p>
@@ -24,8 +38,6 @@ export default function Home() {
             </div>
 
             <div id='bottom-container'>
-                {/* I'll add a search bar to search for files of any user. Clicking on user goes to user detail page, clicking on file goes to FileDetail page
-                This job is suited to a component */}
                 <h1 id='heading'> See what other users uploaded </h1>
                 <Search />
             </div>
