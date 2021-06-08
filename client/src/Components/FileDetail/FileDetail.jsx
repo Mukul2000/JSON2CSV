@@ -35,7 +35,7 @@ export default function FileDetail() {
             <br></br>
             File content - 
             <div id='text-area'>
-                <div id = 'text' className='m-2'> {JSON.stringify(fileData)} </div>            
+                <div id = 'text' className='m-2'>{JSON.stringify(fileData, null, 10)} </div>            
             </div>
             <div id='download-buttons'>
                 Download as : 

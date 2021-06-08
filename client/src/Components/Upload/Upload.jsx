@@ -5,16 +5,15 @@ import { upload } from '../../api/api';
 export default function Upload() {
     const [file, setFile] = useState();
 
-    // TODO: Maybe put the POST request code seperately, we'll see.
-
     function handleChange(e) {
+        // Some checks on uploaded file
         if (e.target.files[0].size > 2097152) {
             alert("File size must be less than 2MB");
-            e.target.value = '';
+            e.target.value='';
         }
         else if (!e.target.files[0].name.endsWith('.json')) {
             alert("Only JSON file types allowed");
-            e.target.value = '';
+            e.target.value='';
         }
         else {
             const file = e.target.files[0];
@@ -30,7 +29,6 @@ export default function Upload() {
 
     return (
         <div id='form-container'>
-            {/* TODO: Limit upload file size  */}
             <input type='file' id='upload' name='uploaded_json' onChange={(e) => handleChange(e)} />
             <Button variant='primary' onClick={(e) => handleSubmit(e)}> Convert to CSV </Button>
         </div>

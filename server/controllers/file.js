@@ -5,19 +5,20 @@ const { convert_to_CSV, validateJSON } = require('../utils/file_utils');
 // 2 things have to happen
 // 1. Add to user's list of files
 // 2. Convert to CSV and send back
-async function add_convert(req,res) {
-    const original_filename = req.file.originalname
-    const filename = req.file.filename; // Name inside the server
+async function add_convert(req, res) {
 
-    const owner_id = req.userId;
     try {
+        const original_filename = req.file.originalname
+        const filename = req.file.filename; // Name inside the server
 
+        const owner_id = req.userId;
         // Validate, right now it just returns true
         if (!validateJSON(filename)) throw 'Invalid JSON';
 
         //Save to DB
         const user = await User.findOne({ id: owner_id });
         user.files.push({ original_filename: original_filename, internal_filename: filename });
+        
         Promise.all([user.save(), convert_to_CSV(filename)]);
         const final_name = req.file.filename + '.csv';
         res.send(final_name);

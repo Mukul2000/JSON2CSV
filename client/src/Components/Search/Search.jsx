@@ -6,7 +6,7 @@ import './Search.css';
 
 export default function Search() {
     const [value, setValue] = useState('');
-    const [users, setUsers] = useState([{files:[]}]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/user/random')

@@ -4,13 +4,11 @@ const User = require('../schemas/Schema');
 async function get_userfiles(req, res) {
     try {
         const user_id = req.params.user_id;
-        const page_num = req.params.page;
-        const resPerPage = 10;
-        const page = Math.max(page_num, 1);
-        const data = (await User.find({ id: user_id }))[0].files;
+        const data = (await User.findOne({ id: user_id })).files;
         res.send(data);
     }
     catch (e) {
+        console.log(e);
         res.status(500).json({ error: e });
     }
 }
@@ -20,11 +18,12 @@ async function check_login(req, res) {
     const profile = req.body;
     console.log(profile);
 
-    const user = await User.findOne({ id: profile.googleId, email: profile.email });
-    console.log(user);
-    if (user === null) {
-        // New user, not in database. Add user
-        try {
+    try {
+        const user = await User.findOne({ id: profile.googleId, email: profile.email });
+        console.log(user);
+        if (user === null) {
+            // New user, not in database. Add user
+
             const newuser = new User({
                 id: profile.googleId,
                 email: profile.email,
@@ -32,33 +31,35 @@ async function check_login(req, res) {
                 files: []
             });
             await newuser.save();
-            
         }
-        catch (e) {
-            res.status(400).json({ error: e, message: 'Cannot authenticate' });
-        }
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).json({ error: e, message: 'Cannot authenticate' });
     }
     res.send('Done');
 }
 
-async function random_records(req,res) {
+async function random_records(req, res) {
     try {
-        const data = await User.find().limit(10);
+        const data = await User.find({$nor: [{files: {$size: 0}}]}); // get users which have files.
         res.send(data);
     }
     catch (e) {
+        console.log(e);
         res.status(500).json({ error: e });
     }
 
 }
 
-
+// Searches for a user with this id
 async function search(req, res) {
     try {
         const user = await User.find({ id: req.params.id });
         res.send(user);
     }
     catch (e) {
+        console.log(e);
         res.status(500).json({ error: e });
     }
 }
